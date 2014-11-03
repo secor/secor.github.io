@@ -1,0 +1,136 @@
+$gallery-title-border-style: 1px solid #fff;
+$gallery-piece-width: 300px;
+$gallery-image-width: $gallery-piece-width;
+$gallery-item-length: 7;
+$shift: 40px;
+
+.gallery {
+    @include position(absolute, $header-height 0px $footer-height 0px);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    @media #{$breakpoint-medium} {
+        overflow-x: hidden;
+    }
+    .gallery-wrap {
+        @include size($gallery-piece-width*($gallery-item-length/2) 100%);
+        @media #{$breakpoint-medium} {
+            width: $gallery-piece-width*$gallery-item-length;
+            white-space: nowrap;
+        }
+        &.lock {
+            @include transition-property(transform);
+            @include transition-duration($transition-speed);
+            .piece-title {
+                display: none;
+            }
+        }
+    }
+    .gallery-piece {
+        @include box-sizing(border-box);
+        @include size($gallery-piece-width/2 100%);
+        @include transition(width $transition-speed*2);
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        white-space: normal;
+        @media #{$breakpoint-medium} {
+            @include size($gallery-piece-width 100%);
+        }
+        &.active {
+            .piece-image {
+                //-webkit-clip-path: polygon($shift 0, 1000px 0, 1000px+-$shift 100%, 0 100%);
+            }
+        }
+        @media #{$breakpoint-medium} {
+            &:first-child,
+            &:last-child {
+                width: $gallery-piece-width;
+            }
+            &:first-child {
+                .piece-image {
+                    //-webkit-clip-path: polygon(0 0, 100% 0, $gallery-image-width+-$shift 100%, 0 100%);
+                }
+            }
+            &:last-child {
+                .piece-image {
+                    //-webkit-clip-path: polygon($shift 0, 100% 0, 100% 100%, 0 100%);
+                }
+            }
+        }
+        @media #{$breakpoint-medium} {
+            &:hover {
+                .piece-title {
+                    opacity: 1;
+                    &:after {
+                        @include transform(scale(1));
+                    }
+                }
+                h2 {
+                    @include transform(translate3d(0,0,0));
+                    opacity: 1;
+                }
+            }
+        }
+        &:hover, &.active {
+            .piece-image {
+                @include filter(grayscale(0));
+            }
+        }
+    }
+    .piece-image {
+        @include position(absolute, 0px 0px 0px ($gallery-piece-width+-$gallery-image-width)/3);
+        @include size(100% 100%);
+        @include transition(all $transition-speed*3);
+        background: {
+            repeat: no-repeat;
+            position: 50% 50%;
+            size: cover;
+        }
+        @media #{$breakpoint-medium} {
+            @include filter(grayscale(70%));
+        }
+        //-webkit-clip-path: polygon($shift 0, $gallery-image-width 0, $gallery-image-width+-$shift 100%, 0 100%);
+    }
+    .piece-title {
+        @include position(absolute, 50% 0px auto 0px);
+        @include transition(all $transition-speed);
+        color: #fff;
+        opacity: 0;
+        padding: 0 $spacing*2;
+        text-align: center;
+        width: 100%;
+        &:after {
+            @include position(absolute, $font-size-tiny*3 $spacing*2 auto $spacing*2);
+            @include transform(scale(0));
+            @include transition-property(transform);
+            @include transition-duration($transition-speed);
+            border-top: $gallery-title-border-style;
+            content: "";
+            display: block;
+        }
+    }
+    h2 {
+        @include transform(translate3d(0,0+-$spacing,0));
+        @include transition-property(transform opacity);
+        @include transition-delay($transition-speed);
+        @include transition-duration($transition-speed);
+        @include transition-timing-function(ease-out);
+        color: #fff;
+        font-size: $font-size-medium;
+        font-weight: normal;
+        line-height: 1.2;
+        margin: 0;
+        opacity: 0;
+        padding: $spacing $spacing/2;
+    }
+    .piece-category {
+        font-size: $font-size-tiny;
+        font-weight: bold;
+        letter-spacing: 0.35em;
+        padding-bottom: $spacing;
+        text-transform: uppercase;
+    }
+}
+
+

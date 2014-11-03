@@ -1,0 +1,46 @@
+$breakpoint-small-only: "only screen and (max-width : 600px)";
+$breakpoint-medium: "only screen and (min-width : 600px)";
+$breakpoint-large: "only screen and (min-width : 800px)";
+$breakpoint-huge: "only screen and (min-width : 1100px)";
+
+$link-color: #0081c3;
+$link-color-hover: #00a3f6;
+$text-color: #333333;
+$text-color-light: #999999;
+$button-color: #fff;
+
+$spacing: 20px;
+$header-height: 100px;
+$header-height-small: 75px;
+$footer-height: 60px;
+$body-padding: $spacing*3;
+$radius: 6px;
+
+$transition-speed: 0.3s;
+$transition-style: ease-in-out;
+$bounce: cubic-bezier(.5,-0.35,.15,1.25);
+$ease: cubic-bezier(.45,.45,0,1);
+
+$font-size-footer: 0.75rem;
+$font-size-tiny: 1rem;
+$font-size-small: 1.5rem;
+$font-size-medium: 2rem;
+$font-size-big: 1.75rem;
+$font-size-bigger: 2.25rem;
+$font-size-huge: 4rem;
+
+$icon-size-large: 3rem;
+
+$blue: #0086cc;
+$purple: #b0049c;
+$green: #69980f;
+$orange: #f79727;
+$red: #E84F13;
+$gray: #777;
+$dark-gray: #555;
+$light-gray: #ccc;
+
+$link-color: $light-gray;
+$link-hover-color: $blue;
+
+$imgPath: '/assets/img/';

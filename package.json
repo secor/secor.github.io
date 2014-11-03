@@ -1,0 +1,22 @@
+{
+  "name": "justin-secor-dot-com",
+  "version": "0.0.1",
+  "devDependencies": {
+    "assemble": "^0.4.42",
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-connect": "~0.8.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-sass": "^0.16.0",
+    "handlebars": "^2.0.0",
+    "normalize.css": "^3.0.1"
+  },
+  "dependencies": {
+    "angular": "^1.2.19",
+    "angular-animate": "^1.2.16",
+    "angular-ui-router": "^0.2.10",
+    "Swipe": "https://github.com/thebird/Swipe/archive/master.tar.gz",
+    "snapsvg": "https://github.com/adobe-webplatform/Snap.svg/archive/master.tar.gz"
+  }
+}

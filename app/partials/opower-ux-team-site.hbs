@@ -1,0 +1,45 @@
+<article class="article" id="article-opower-ux-team-site">
+    <div class="banner" ng-style="resizeWithOffset(0)">
+        <div class="article-heading">
+            <h1>
+                The Opower UX Team site
+            </h1>
+            <h2 class="subtitle">
+                Collaborating with @jimjones, I built a fun site about the Opower User Experience Team.
+            </h2>
+        </div>
+        <a class="close-article" href="#/">
+            <svg viewBox="0 0 80 80">
+                <use xlink:href="#close-button"></use>
+            </svg>
+        </a>
+    </div>
+    <div class="article-body">
+
+
+
+{{#markdown}}
+###_I work with some of the best user experience designers in the country! We get to help people save money by using less energy: a unique design challenge, but an edifying one._
+
+When we set out to design a site for the team, we wanted it to accomplish three main goals:
++ Become a resource for information and inspiration for other design teams
++ Showcase some of the thinking and process that goes into our product design
++ Pique the interests of anyone wanting to collaborate with us
+
+[Jim Jones](https://twitter.com/JimJones) was the genius behind the sharp visuals; my contributions were project management, illustration, and code. We wanted the site to tell a linear story, so we went with a single-page format that ends with a call-to-action to get in contact with the team.
+
+##Code
+
+I got to experiment with some new tech on this project! My dev environment included everything that I usually roll with: [npm](https://www.npmjs.org/) for package management, [Grunt](http://gruntjs.com/) for task management, [Sass](http://sass-lang.com/) (and [Libsass](https://github.com/sass/libsass)) for style, [Bourbon](http://bourbon.io/) for great Sass shortcuts, and various other timesavers. The new tech I incorporated was [Assemble](http://assemble.io/), which is a really great static site generator that runs on Node.js. Assemble allowed us to use [Handlebars]() and Markdown format to build the project, but assembles everything into static files with a simple Grunt task. Assemble lays the path for lovely separation of concerns: I keep content in YAML content files, structure in Handlebars files, and reusable components in partials.
+
+I’m also happy to report that the javascript is of the pure vanilla kind: no frameworks or plugins found here, other than d3 and [Trianglify](https://github.com/qrohlf/trianglify) for the beautiful background geometry.
+
+Visit the site here: [ux.opower.com](https://ux.opower.com)
+
+
+{{/markdown}}
+
+
+
+    </div>
+</article>

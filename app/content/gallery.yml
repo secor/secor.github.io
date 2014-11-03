@@ -1,0 +1,37 @@
+pieces:
+
+-   title: "Designer, developer, and a third thing"
+    background: "justin.jpg"
+    category: "about"
+    slug: "about-me"
+    content: "about-me.md"
+
+-   title: "The Web is Inefficient, but We Can Fix It"
+    background: "electro-fist.jpg"
+    category: "article"
+    slug: "the-web-is-inefficient"
+
+-   title: "Illustrating Opower"
+    background: "illustrating-opower.jpg"
+    category: "art"
+    slug: "illustrating-opower"
+
+-   title: "How to Solve Problems in your Sleep (Literally)"
+    background: "galaxy.jpg"
+    category: "article"
+    slug: "solve-problems-in-your-sleep"
+
+-   title: "Figure Drawing"
+    background: "drawing.jpg"
+    category: "art"
+    slug: "figure-drawing"
+
+-   title: "The Social Responsibilities of Interaction Designers"
+    background: "maze.jpg"
+    category: "article"
+    slug: "social-responsibilities-of-interaction-designers"
+
+-   title: "The Opower UX Team Site"
+    background: "team-site.jpg"
+    category: "design"
+    slug: "opower-ux-team-site"

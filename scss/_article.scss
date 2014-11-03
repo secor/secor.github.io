@@ -1,0 +1,83 @@
+.article {
+    max-width: 900px;
+    margin: 0 auto $spacing*5;
+    padding: 0 $spacing*2;
+    text-align: left;
+    .banner {
+        @include size(100% 600px);
+        position: relative;
+    }
+    .article-body {
+        padding-bottom: $spacing*3;
+        border-bottom: 1px solid $light-gray;
+        h2:first-child, h3:first-child, h4:first-child, p:first-child {
+            margin-top: 0;
+        }
+    }
+    img {
+        margin: $spacing auto;
+        max-width: 100%;
+    }
+    .article-heading {
+        @include position(absolute, auto auto $spacing*5 0px);
+        h1, .subtitle {
+            @include transform(translate3d(0,40px,0));
+            @include transition(all $transition-speed*2 $bounce 0.4s);
+        }
+        h1 {
+            color: #fff;
+            font-size: $font-size-bigger;
+            line-height: 1.1;
+            margin: 0 0 0.25em 0;
+            opacity: 0;
+            @media #{$breakpoint-medium} {
+                font-family: 'titillium-thin';
+                font-size: $font-size-huge;
+                font-weight: normal;
+            }
+        }
+        .subtitle {
+            @include transform(translate3d(0,-20px,0));
+            @include transition(all $transition-speed $bounce 0.8s);
+            color: #fff;
+            font-size: $font-size-small;
+            font-weight: normal;
+            opacity: 0;
+        }
+    }
+    h2 {
+        margin: 0;
+        padding: 0;
+    }
+    h3 {
+        font-size: $font-size-big;
+        font-weight: normal;
+        @media #{$breakpoint-medium} {
+            font-size: $font-size-bigger;
+        }
+    }
+    .close-article {
+        @include position(absolute, 100px -20px auto auto);
+        @include size(1em 1em);
+        @include transform(scale(0.5));
+        @include transition(all $transition-speed $bounce 1.2s);
+        display: block;
+        font-size: $icon-size-large;
+        line-height: 1;
+        margin-top: 1em;
+        opacity: 0;
+        @media #{$breakpoint-huge} {
+            right: -20px;
+        }
+    }
+    &.active {
+        .close-article  {
+            @include transform(scale(1));
+            opacity: 1;
+        }
+        h1, .subtitle {
+            @include transform(translate3d(0,0,0));
+            opacity: 1;
+        }
+    }
+}
