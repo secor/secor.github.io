@@ -102,10 +102,16 @@ app.controller('galleryController', function(
 
     if (sharedVariables.mobile) {
         $scope.galleryWrap.style.webkitTransform = 'translate3d(0,0,0)';
-    } else if (sharedVariables.galleryPosition > sharedVariables.galleryWidth/2) {
+        $scope.galleryWrap.style.mozTransform = 'translate3d(0,0,0)';
+        $scope.galleryWrap.style.msTransform = 'translate3d(0,0,0)';
+        $scope.galleryWrap.style.transform = 'translate3d(0,0,0)';
+    } else if (sharedVariables.activeGalleryItem && sharedVariables.activeGalleryItem.offsetLeft >= sharedVariables.galleryWidth/3) {
         $scope.galleryWrap.style.webkitTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
+        $scope.galleryWrap.style.mozTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
+        $scope.galleryWrap.style.msTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
+        $scope.galleryWrap.style.transform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
     }
-// remove the lock so we can scan the gallery
+    // remove the lock so we can scan the gallery
     $timeout(function(){
         $scope.galleryWrap.classList.remove('lock');
     },1000);
@@ -128,10 +134,10 @@ app.controller('articleController', function(
     var articleLink = document.getElementById($state.current.label),
         article = document.getElementById('article-'+$state.current.label),
         offset = articleLink.offsetLeft,
-        blah = (offset > sharedVariables.galleryWidth/2) ? true : false,
-        adjOffset = (blah) ? offset-sharedVariables.windowWidth+300 : offset,
-        moveTimeout = (blah) ? 300 : 0,
-        growTimeout = (blah) ? 0 : 300;
+        onTheRight = (offset > sharedVariables.galleryWidth/2) ? true : false,
+        adjOffset = (onTheRight) ? offset-sharedVariables.windowWidth+300 : offset,
+        moveTimeout = (onTheRight) ? 400 : 0,
+        growTimeout = (onTheRight) ? 0 : 400;
 
     sharedVariables.activeGalleryItem = articleLink;
 
@@ -141,6 +147,9 @@ app.controller('articleController', function(
     $timeout(function(){
         if (!sharedVariables.mobile) {
             $scope.galleryWrap.style.webkitTransform = 'translate3d(-'+offset+'px,0,0)';
+            $scope.galleryWrap.style.mozTransform = 'translate3d(-'+offset+'px,0,0)';
+            $scope.galleryWrap.style.msTransform = 'translate3d(-'+offset+'px,0,0)';
+            $scope.galleryWrap.style.transform = 'translate3d(-'+offset+'px,0,0)';
         } else {
             $scope.scrollTo($scope.gallery, offset, 200);
         }
@@ -184,6 +193,9 @@ app.directive('jsGallery', function ($timeout, $interval, $window, sharedVariabl
                                 posX += (mX2 - posX) / damp; // zeno's paradox equation "catching delay" 
                                 sharedVariables.galleryPosition = posX*wDiff;
                                 $scope.galleryWrap.style.webkitTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
+                                $scope.galleryWrap.style.mozTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
+                                $scope.galleryWrap.style.msTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
+                                $scope.galleryWrap.style.transform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
                             },10);
                         }
                     });
@@ -235,7 +247,7 @@ app.directive('resize', function ($window, sharedVariables) {
             scope.resizeWithOffset = function(offsetH) {
                 scope.$eval(attr.notifier);
                 return { 
-                    'height': (newValue.h - offsetH) + 'px'                    
+                    'height': (newValue.h - offsetH) + 'px'
                 };
             };
 

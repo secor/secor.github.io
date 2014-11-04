@@ -33,7 +33,8 @@ a {
 
 blockquote {
     border-left: 2px solid $light-gray;
-    margin-left: 0;
+    display: block;
+    margin: $spacing 0;
     padding: 0 $spacing*2;
     text-align: center;
     p {
