@@ -1,0 +1,48 @@
+<article class="article" id="article-the-web-is-inefficient">
+    <div class="banner" ng-style="resizeHeight(0)">
+        <div class="article-heading">
+            <h1>
+                The Web is Inefficient, but We Can Fix It
+            </h1>
+            <h2 class="subtitle">
+                Why designers should flatten their energy consumption, not just their designs
+            </h2>
+        </div>
+        <a class="close-article" href="#/">
+            <svg viewBox="0 0 80 80">
+                <use xlink:href="#close-button"></use>
+            </svg>
+        </a>
+    </div>
+    <div class="article-body">
+
+
+
+<h3 id="hey-fellow-designers-and-developers-we-all-have-a-serious-flaw-this-flaw-has-far-reaching-consequences-has-persisted-undetected-for-a-long-time-and-permeates-every-one-of-our-day-to-day-duties-from-drawing-wireframes-to-animating-svgs-">Hey, fellow designers and developers: we all have a serious flaw. This flaw has far-reaching consequences, has persisted undetected for a long time, and permeates every one of our day-to-day duties—from drawing wireframes to animating SVGs.</h3>
+<h3 id="_-we-re-wasteful-_"><em><strong>We’re wasteful.</strong></em></h3>
+<p>Granted, everyone is occasionally wasteful of time, bandwidth, or effort. Who could possibly optimize every resource? There’s one thing, though, that I bet you hadn’t even realized you were wasting while designing and developing for the Web: electricity.</p>
+<p>I didn’t even realize it myself until recently—and I work for Opower, a company totally devoted to helping people be energy efficient! In general, people think about their own personal energy consumption only nine minutes per year, so it’s not surprising that you or I have been big energy wasters. How so, you ask?</p>
+<h2 id="the-web-is-a-massive-suck">The Web is a massive suck</h2>
+<p>First of all, the Internet is responsible for consuming a large chunk of global energy consumption. At the heart of web-related energy usage are data centers – the massive supercomputing facilities that store and distribute the sites and apps that we design and build. In the US alone, data centers were responsible for <a href="http://www.nytimes.com/2012/09/23/technology/data-centers-waste-vast-amounts-of-energy-belying-industry-image.html?pagewanted=all&amp;_r=0">76 billion kilowatt hours</a> of electricity usage in 2012 (about the <a href="http://www.eia.gov/electricity/state/">same amount</a> consumed by the entire state of Arizona). An unfortunate truth is that only a fraction of that electricity goes to powering computer servers, while a majority is spent keeping them cool. (Google, in an innovative move to save energy, has <a href="http://www.wired.com/wiredenterprise/2012/08/google-finland-data-center/">relocated</a> some of their data centers to the Arctic circle).</p>
+<p>And that’s just to keep the Internet’s engines idling. It takes electricity to move data from our servers to our users, and it’s easy to quantify how much. Each bit has an energy cost roughly equal to 4.6 microjoules (thanks to <a href="http://energyzarr.typepad.com/energyzarrnationalcom/2008/08/the-true-cost-o.html">Rick Zarr</a> for the calculations). That means the front page of <a href="http://www.nbc.com/">NBC.com</a>, which weighs 1.7 megabytes and draws about <a href="https://www.quantcast.com/nbc.com">16 million</a> monthly visits, burns about 300 kilowatt hours in a month just delivering front-page content to users.</p>
+<p>If you reside in a one-bedroom apartment and have typical electricity consumption habits like mine, then from an energy perspective, your apartment is basically like living in NBC.com’s front page. In terms of our planet’s fossil fuels, each kilowatt hour consumes about <a href="http://www.eia.gov/tools/faqs/faq.cfm?id=667&amp;t=2">1.1 pounds of coal</a>, which puts NBC.com’s monthly coal consumption at about 320 pounds. That also means about <a href="http://www.eia.gov/coal/production/quarterly/co2_article/co2.html">600 pounds</a> of CO2 is sent into the atmosphere.</p>
+<p>We’re unwittingly wasteful with color, too. Consider the two websites below:</p>
+<p><img src="assets/img/displays.jpg" alt="ux.opower.com screenshot"></p>
+<p>Now, pretend there was no difference in the energy cost to digitally send both of these sites to a user’s device. Assume they each take the same amount of CPU power to render. There’s still a potential difference in their energy consumption… can you spot it? What if I reminded you that your computer screen is basically a big, fancy light bulb?</p>
+<p>Depending on your device, Bing’s homepage might be more energy efficient for the simple reason that it’s darker. Your screen is composed of pixels, and the color of each pixel is determined by the amount light passing through it: white is 100% light output, and black is zero. The takeaway here is that for certain types of devices (e.g. projectors, older monitors, and LED screens), brighter colors consume more energy than darker colors (this premise led to the creation of <a href="http://www.blackle.com/about/">Blackle</a>, a black-backgrounded version of Google).</p>
+<p>Now, if you’re viewing these websites on a state-of the-art LCD screen, the difference in color amounts to pretty much nothing. But with old-style CRT monitors (which are still heavily used) and even LED monitors (which are increasingly being adopted) —the impact of color is significant.</p>
+<h2 id="okay-we-re-wasteful-now-what-">Okay, we’re wasteful. Now what?</h2>
+<p>There isn’t anything specific I can suggest that would help all of us be more efficient. But there are some general things you and I should do to stop being wasteful, and it begins with changing our process.</p>
+<p>The first thing to do—start it today!—is add energy efficiency to your list of design requirements. We need to start considering it at the same level that we consider usability, responsiveness, and aesthetics. If you have metrics for success (like web traffic, click through rates, ad revenue, etc.), add energy impact to that list too. When you compare your site/app to a competitor’s, figure out their energy footprint and make a goal to do better.</p>
+<p><em>The point is this:</em> if we start thinking about energy as part of our process, we’ll each figure out the best ways to save energy in our unique circumstances.</p>
+<p>What’s another thing you can do? Pair performance with energy efficiency. This should be low-hanging fruit, because performance—something you should be optimizing for already—is directly tied to energy efficiency. A page that loads fast and executes quickly should be more energy efficient than a slow page (with a few caveats), and one obvious way to satisfy both concerns is to only give users what they need for the best experience.</p>
+<p>I’ll offer an example by pointing out a common mistake front-end developers (myself included) make all the time: loading jQuery on a page that doesn’t need it. Working with templates makes it all-too-tempting to throw a call to jQuery in every head across your site, even if only a few pages actually do anything with it. A worse offense is loading jQuery for a very simple DOM manipulation, when you could accomplish the same thing with a few lines of vanilla javaScript. At the time of this posting, the latest version of jQuery is 93kb in size, which means each time we save a user from downloading it unnecessarily, we save about 3.5 joules of electricity. Extrapolate that across 10,000 of us building 100 pages each with 10,000 viewers, and we would save enough energy to take ten average homes off the grid for an entire month (about 9,700 kWh).</p>
+<p>And that’s just removing a few unnecessary lines of code… imagine what we could save if we questioned the necessity of each framework, script, or image on our pages. Ask yourself: do I really need to load every weight of a specific typeface? Do I really need all the comments to appear below an article, or can I paginate them? Should I really auto-buffer that video? You don’t need to sacrifice the user experience, just be intentional about everything you include as part of it.</p>
+<p>There’s one final thing you can do to be an energy efficient web designer. Assuming you’ve heeded the call, make it known. Let your users see it. Throw a message on your site or app about how you’re committed to using energy responsibly. Get a <a href="http://www.co2stats.com/">Green Certification</a>, and add their badge to your footer; it’s not just an achievement, it’s a reminder to your users that they should think about efficiency in their own job, whatever it may be. We’re the creators who make the web what it is—we control how it looks, where people are looking, and what people are learning.</p>
+<p>We have everyone’s attention. Let’s not waste it!</p>
+
+
+
+
+    </div>
+</article>

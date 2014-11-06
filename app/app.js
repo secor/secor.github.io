@@ -75,7 +75,7 @@ var app = angular.module(
             label: detail_states[i],
             url: '/'+detail_states[i],
             type: 'article',
-            templateUrl: 'app/partials/'+detail_states[i]+'.html',
+            templateUrl: 'public/app/partials/'+detail_states[i]+'.html',
             controller: 'articleController'
         });
     }

@@ -5,8 +5,7 @@ module.exports = function(grunt) {
         connect: {
             server: {
                 options: {
-                    port: 9001,
-                    base: 'public'
+                    port: 9001
                 }
             }
         },
@@ -93,7 +92,7 @@ module.exports = function(grunt) {
                     layout: ['app/index.hbs']
                 },
                 src: ['app/index.hbs'],
-                dest: 'public/index.html'
+                dest: 'index.html'
             },
             partials: {
                 src: ['app/partials/*.hbs'],
