@@ -5,8 +5,7 @@ var app = angular.module(
         'ngAnimate'
         ]
     )
-.run(['$rootScope', '$state', '$stateParams',
-        function ($rootScope, $state, $stateParams) {
+.run(['$rootScope', '$state', '$stateParams',function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
 
@@ -20,6 +19,13 @@ var app = angular.module(
                 if (t < 1) return c/2*t*t + b;
                 t--;
                 return -c/2 * (t*(t-2) - 1) + b;
+            };
+
+            $rootScope.prefix = function($e, val) {
+                $e.style.webkitTransform = val;
+                $e.style.mozTransform = val;
+                $e.style.msTransform = val;
+                $e.style.transform = val;
             };
 
             $rootScope.scrollTo = function(element, to, duration) {
@@ -40,7 +46,7 @@ var app = angular.module(
             };
         }
     ])
-.config(function($stateProvider, $urlRouterProvider, $logProvider, $interpolateProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$logProvider', '$interpolateProvider', function($stateProvider, $urlRouterProvider, $logProvider, $interpolateProvider) {
 
     // to use handlebars with angular
     $interpolateProvider.startSymbol('{%');
@@ -61,7 +67,6 @@ var app = angular.module(
         'solve-problems-in-your-sleep',
         'figure-drawing',
         'social-responsibilities-of-interaction-designers',
-        //'frontending-at-opower',
         'opower-ux-team-site'
     ];
 
@@ -77,7 +82,7 @@ var app = angular.module(
 
     $logProvider.debugEnabled(true);
 
-});
+}]);
 
 app.service('sharedVariables', function(){
     activeGalleryItem = null;
@@ -87,7 +92,7 @@ app.service('sharedVariables', function(){
     mobile = true;
 });
 
-app.controller('galleryController', function(
+app.controller('galleryController', ['$scope','$window','$state','$timeout','$interval','sharedVariables', function(
     $scope,
     $window,
     $state,
@@ -101,15 +106,9 @@ app.controller('galleryController', function(
     });
 
     if (sharedVariables.mobile) {
-        $scope.galleryWrap.style.webkitTransform = 'translate3d(0,0,0)';
-        $scope.galleryWrap.style.mozTransform = 'translate3d(0,0,0)';
-        $scope.galleryWrap.style.msTransform = 'translate3d(0,0,0)';
-        $scope.galleryWrap.style.transform = 'translate3d(0,0,0)';
+        $scope.prefix($scope.galleryWrap, 'translate3d(0,0,0)');
     } else if (sharedVariables.activeGalleryItem && sharedVariables.activeGalleryItem.offsetLeft >= sharedVariables.galleryWidth/3) {
-        $scope.galleryWrap.style.webkitTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
-        $scope.galleryWrap.style.mozTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
-        $scope.galleryWrap.style.msTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
-        $scope.galleryWrap.style.transform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
+        $scope.prefix($scope.galleryWrap, 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)');
     }
     // remove the lock so we can scan the gallery
     $timeout(function(){
@@ -119,10 +118,10 @@ app.controller('galleryController', function(
         sharedVariables.activeGalleryItem.style.width = '';
     }
 
-});
+}]);
 
 
-app.controller('articleController', function(
+app.controller('articleController', ['$scope','$window','$state','$timeout','$interval','sharedVariables', function(
     $scope,
     $window,
     $state,
@@ -146,10 +145,7 @@ app.controller('articleController', function(
 
     $timeout(function(){
         if (!sharedVariables.mobile) {
-            $scope.galleryWrap.style.webkitTransform = 'translate3d(-'+offset+'px,0,0)';
-            $scope.galleryWrap.style.mozTransform = 'translate3d(-'+offset+'px,0,0)';
-            $scope.galleryWrap.style.msTransform = 'translate3d(-'+offset+'px,0,0)';
-            $scope.galleryWrap.style.transform = 'translate3d(-'+offset+'px,0,0)';
+            $scope.prefix($scope.galleryWrap, 'translate3d(-'+offset+'px,0,0)');
         } else {
             $scope.scrollTo($scope.gallery, offset, 200);
         }
@@ -160,10 +156,10 @@ app.controller('articleController', function(
         article.classList.add('active');
     },growTimeout);
 
-});
+}]);
 
 
-app.directive('jsGallery', function ($timeout, $interval, $window, sharedVariables) {
+app.directive('jsGallery', ['$timeout', '$interval', '$window', 'sharedVariables', function($timeout, $interval, $window, sharedVariables) {
     return {
         restrict: 'A',
         link: function ($scope, element, attrs) {
@@ -174,7 +170,7 @@ app.directive('jsGallery', function ($timeout, $interval, $window, sharedVariabl
                         galleryW        = sharedVariables.windowWidth,
                         gallerySW       = $gallery.scrollWidth,
                         wDiff  = (gallerySW/galleryW)-1,  // widths difference ratio
-                        mPadd  = 200,  // Mousemove Padding
+                        mPadd  = 200, // Mousemove Padding
                         damp   = 20,  // Mousemove response softness
                         mX     = 0,   // Real mouse position
                         mX2    = 0,   // Modified mouse position
@@ -192,10 +188,7 @@ app.directive('jsGallery', function ($timeout, $interval, $window, sharedVariabl
                             $scope.galleryInterval = $interval(function(){
                                 posX += (mX2 - posX) / damp; // zeno's paradox equation "catching delay" 
                                 sharedVariables.galleryPosition = posX*wDiff;
-                                $scope.galleryWrap.style.webkitTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
-                                $scope.galleryWrap.style.mozTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
-                                $scope.galleryWrap.style.msTransform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
-                                $scope.galleryWrap.style.transform = 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)';
+                                $scope.prefix($scope.galleryWrap, 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)');
                             },10);
                         }
                     });
@@ -214,9 +207,9 @@ app.directive('jsGallery', function ($timeout, $interval, $window, sharedVariabl
             },200);
         }
     };
-});
+}]);
 
-app.directive('jsLaunch', function ($timeout, $interval, sharedVariables) {
+app.directive('jsLaunch', ['$timeout', '$interval', 'sharedVariables', function ($timeout, $interval, sharedVariables) {
     return {
         restrict: 'A',
         link: function ($scope, element, attrs) {
@@ -227,9 +220,9 @@ app.directive('jsLaunch', function ($timeout, $interval, sharedVariables) {
             });
         }
     };
-});
+}]);
 
-app.directive('resize', function ($window, sharedVariables) {
+app.directive('resize', ['$window', 'sharedVariables', function ($window, sharedVariables) {
     return function (scope, element, attr) {
 
         var w = angular.element($window);
@@ -244,7 +237,7 @@ app.directive('resize', function ($window, sharedVariables) {
             sharedVariables.mobile = (sharedVariables.windowWidth <= 600) ? true : false;
             sharedVariables.galleryWidth = scope.galleryWrap.clientWidth;
 
-            scope.resizeWithOffset = function(offsetH) {
+            scope.resizeHeight = function(offsetH) {
                 scope.$eval(attr.notifier);
                 return { 
                     'height': (newValue.h - offsetH) + 'px'
@@ -257,4 +250,4 @@ app.directive('resize', function ($window, sharedVariables) {
             scope.$apply();
         });
     };
-}); 
+}]); 

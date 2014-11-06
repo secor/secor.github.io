@@ -34,6 +34,27 @@ module.exports = function(grunt) {
             'public/'
         ],
 
+        uglify: {
+            /*
+            options: {
+                mangle: false,
+                compress: false,
+                beautify: true
+            },*/
+            my_target: {
+                files: {
+                    'public/app/app.js': [
+                        'node_modules/angular/angular.js',
+                        'node_modules/angular-animate/angular-animate.js',
+                        'node_modules/angular-ui-router/release/angular-ui-router.js',
+                        //'node_modules/snapsvg/dist/snap.svg-min.js',
+                        'node_modules/Swipe/swipe.js',
+                        'app/app.js'
+                    ]
+                }
+            }
+        },
+
         copy: {
             main: {
                 files: [
@@ -55,19 +76,6 @@ module.exports = function(grunt) {
                             'app/app.js'
                         ],
                         dest: 'public/'
-                    },
-                    {
-                        src: [
-                            'node_modules/angular/*',
-                            'node_modules/angular-animate/*',
-                            'node_modules/angular-ui-router/release/*',
-                            'node_modules/snapsvg/dist/snap.svg-min.js',
-                            'node_modules/Swipe/swipe.js'
-                        ],
-                        dest: 'public/app/plugins/',
-                        expand: true,
-                        flatten: true,
-                        filter: 'isFile'
                     }
                 ]
             }
@@ -106,7 +114,7 @@ module.exports = function(grunt) {
             },
             app: {
                 files: 'app/**/*',
-                tasks: ['copy','assemble']
+                tasks: ['copy','assemble','uglify']
             },
             options: {
                 livereload: true
@@ -119,10 +127,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('assemble');
 
     grunt.registerTask('server',['connect']);
-    grunt.registerTask('default', ['server','clean','copy','sass','assemble','watch']);
+    grunt.registerTask('default', ['server','clean','copy','sass','uglify','assemble','watch']);
 
 };

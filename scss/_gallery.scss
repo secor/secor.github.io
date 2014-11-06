@@ -37,27 +37,6 @@ $shift: 40px;
         @media #{$breakpoint-medium} {
             @include size($gallery-piece-width 100%);
         }
-        &.active {
-            .piece-image {
-                //-webkit-clip-path: polygon($shift 0, 1000px 0, 1000px+-$shift 100%, 0 100%);
-            }
-        }
-        @media #{$breakpoint-medium} {
-            &:first-child,
-            &:last-child {
-                width: $gallery-piece-width;
-            }
-            &:first-child {
-                .piece-image {
-                    //-webkit-clip-path: polygon(0 0, 100% 0, $gallery-image-width+-$shift 100%, 0 100%);
-                }
-            }
-            &:last-child {
-                .piece-image {
-                    //-webkit-clip-path: polygon($shift 0, 100% 0, 100% 100%, 0 100%);
-                }
-            }
-        }
         @media #{$breakpoint-medium} {
             &:hover {
                 .piece-title {

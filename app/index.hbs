@@ -5,9 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{{site.title}}</title>
         <link rel="stylesheet" href="{{site.rootPath}}/css/app.css" />
-        <script src="{{site.rootPath}}/app/plugins/angular.min.js"></script>
-        <script src="{{site.rootPath}}/app/plugins/angular-animate.min.js"></script>
-        <script src="{{site.rootPath}}/app/plugins/angular-ui-router.min.js"></script>   
+        <script src="{{site.rootPath}}/app/app.js"></script>
     </head>
     <body ng-class="{'article-page' : $state.current.name !== 'gallery'}" resize>
         
@@ -15,7 +13,7 @@
 
         <header class="header">
             <h1 class="logo">
-                <a class="logo-link">
+                <a class="logo-link" href="/#/">
                     <svg viewBox="0 0 80 80">
                         <use xlink:href="#logo"></use>
                     </svg>
@@ -67,9 +65,6 @@
             Made by Justin Secor with <a href="https://angularjs.org/">Angular</a> and <a href="http://assemble.io/">Assemble</a>.
         </div>
 
-        <script src="{{site.rootPath}}/app/plugins/snap.svg-min.js"></script>
-        <script src="{{site.rootPath}}/app/plugins/swipe.js"></script>
-        <script src="{{site.rootPath}}/app/app.js"></script>
         <!--remove this later--><script src="//localhost:35729/livereload.js"></script>
 
         <script>
