@@ -258,12 +258,12 @@ app.directive('resize', ['$window', 'galleryState',
         var w = angular.element($window);
 
         $scope.$watch(function() {
-            return { 
+            return {
+                'h': w[0].innerHeight, 
                 'w': w[0].innerWidth
             };
         }, function(newValue) {
-            console.log(w[0]);
-            galleryState.windowHeight = w[0].innerHeight;
+            galleryState.windowHeight = newValue.h;
             galleryState.windowWidth = newValue.w;
             galleryState.mobile = galleryState.windowWidth <= 600;
             galleryState.galleryWidth = $scope.galleryWrap.clientWidth;
