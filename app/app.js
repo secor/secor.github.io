@@ -146,10 +146,11 @@ app.controller('articleController', ['$scope','$window','$state','$timeout','$in
     $interval.cancel($scope.galleryInterval);
 
     $timeout(function(){
-        if (!galleryState.mobile) {
+        if (galleryState.mobile) {
             $scope.prefixTransform($scope.galleryWrap, 'translate3d(-'+offset+'px,0,0)');
+            $scope.scrollTo($scope.gallery, offset, 0);
         } else {
-            $scope.scrollTo($scope.gallery, offset, 200);
+            $scope.prefixTransform($scope.galleryWrap, 'translate3d(-'+offset+'px,0,0)');
         }
     },moveTimeout);
 
@@ -219,22 +220,26 @@ app.directive('jsLaunch', ['$rootScope', '$timeout', '$interval', 'galleryState'
         link: function($scope, element, attrs) {
             element.bind('click', function() {
                 galleryState.launchFromGallery = true;
-                $rootScope.suppressAnimation = false;
-                $timeout(function() {
-                    $rootScope.suppressAnimation = true;
-                }, 1000);
+                if (!galleryState.mobile) {
+                    $rootScope.suppressAnimation = false;
+                    $timeout(function() {
+                        $rootScope.suppressAnimation = true;
+                    }, 1000);
+                }
             });
         }
     };
 }]);
 
-app.directive('backToGallery', ['$rootScope', '$timeout', '$state', 
-    function($rootScope, $timeout, $state) {
+app.directive('backToGallery', ['$rootScope', '$timeout', '$state', 'galleryState', 
+    function($rootScope, $timeout, $state, galleryState) {
     return {
         restrict: 'A',
         link: function($scope, element, attrs) {
             element.bind('click', function() {
-                $rootScope.suppressAnimation = false;
+                if (!galleryState.mobile) {
+                    $rootScope.suppressAnimation = false;
+                }
                 $rootScope.$apply();
                 $timeout(function() {
                     $state.go('gallery');

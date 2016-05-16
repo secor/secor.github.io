@@ -1,12 +1,13 @@
 $gallery-title-border-style: 1px solid #fff;
 $gallery-piece-width: 300px;
 $gallery-image-width: $gallery-piece-width;
-$gallery-item-length: 7;
+$gallery-item-length: 9;
 $shift: 40px;
 
 .suppress-animation {
     .gallery-wrap,
     .gallery-piece {
+        @include transition(none !important);
         @include transition-duration(0s !important);
     }
 }
@@ -23,8 +24,9 @@ $shift: 40px;
         @include size($gallery-piece-width*($gallery-item-length/2) 100%);
         @media #{$breakpoint-medium} {
             width: $gallery-piece-width*$gallery-item-length;
-            white-space: nowrap;
         }
+        overflow: visible;
+        white-space: nowrap;
         &.lock {
             @include transition-property(transform);
             @include transition-duration($transition-speed);
@@ -82,10 +84,14 @@ $shift: 40px;
         @include position(absolute, 50% 0px auto 0px);
         @include transition(all $transition-speed);
         color: #fff;
+        display: none;
         opacity: 0;
         padding: 0 $spacing*2;
         text-align: center;
         width: 100%;
+        @media #{$breakpoint-medium} {
+            disply: block;
+        }
         &:after {
             @include position(absolute, $font-size-tiny*3 $spacing*2 auto $spacing*2);
             @include transform(scale(0));
