@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{site.rootPath}}/css/app.css" />
         <script src="{{site.rootPath}}/app/app.js"></script>
     </head>
-    <body ng-class="{'article-page' : $state.current.name !== 'gallery'}" resize>
+    <body ng-class="{'article-page' : $state.current.name !== 'gallery', 'suppress-animation': isAnimationSuppressed()}" resize>
         
         {{> icons}}
 
@@ -20,13 +20,6 @@
                 </a>
             </h1>
             <div class="social-links">
-                <!--
-                <a href="#">
-                    <svg viewBox="0 0 80 80">
-                        <use xlink:href="#mail"></use>
-                    </svg>
-                </a>
-                -->
                 <a href="https://github.com/secor">
                     <svg viewBox="0 0 80 80">
                         <use xlink:href="#github"></use>
@@ -37,17 +30,12 @@
                         <use xlink:href="#twitter"></use>
                     </svg>
                 </a>
-                <a href="http://instagram.com/justinsecor">
-                    <svg viewBox="0 0 80 80">
-                        <use xlink:href="#instagram"></use>
-                    </svg>
-                </a>
             </div>
         </header>
 
         <div class="gallery" id="gallery" ng-controller="galleryController" js-gallery>
             <div class="gallery-wrap" id="gallery-wrap">
-                {{#each gallery.pieces}}<a href="/#{{this.slug}}" class="gallery-piece" id="{{this.slug}}" ng-class="{'active': '{{this.slug}}' == $state.current.name}" js-launch>
+                {{#each gallery.pieces}}<a ng-href="/#{{this.slug}}" class="gallery-piece" id="{{this.slug}}" ng-class="{'active': '{{this.slug}}' == $state.current.name}" js-launch>
                         <div class="piece-image" style="background-image: url(/assets/img/{{this.background}})"></div>
                         <div class="piece-title">
                             <div class="piece-category">{{this.category}}</div>

@@ -1,0 +1,211 @@
+<article class="article" id="article-opattern">
+    <div class="banner" ng-style="resizeHeight(0)">
+        <div class="article-heading">
+            <h1>
+                Diving Deep into the Opattern Design System
+            </h1>
+            <h2 class="subtitle">
+                How Opower designs for scale, singularity, and behavior change
+            </h2>
+        </div>
+        <a class="close-article" back-to-gallery href="">
+            <svg viewBox="0 0 80 80">
+                <use xlink:href="#close-button"></use>
+            </svg>
+        </a>
+    </div>
+    <div class="article-body">
+
+
+
+<p>Imagine this challenging scenario: you’re designing a product that helps people save energy. It will be built on behavioral science principles that motivate people to change their behavior, and the user journey will unfold across a variety of media: email, the web, SMS, and old-fashioned paper mail. All components of that  experience should speak a singular design language, but that language must work in the context of 100 different brands, dozens of languages, and a variety of locales. </p>
+<p>This is not hypothetical, it was our biggest challenge of the past year, and our answer was a new design system we call <a href="https://ux.opower.com/opattern">Opattern</a>.</p>
+<h2 id="fleshing-out-the-problem">Fleshing out the Problem</h2>
+<p>With any design challenge, we begin with problem setting: what are we solving for? We invested an iteration to answer this question and approached it with qualitative research. Designers, engineers, and product managers all had unique perspectives on the status quo of design at Opower, and we teased out three main sources of pain:</p>
+<ol>
+<li><p><strong>Product diversity</strong>. Opower experienced several years of rapid growth, where the number of products, technologies, and business goals multiplied. In general, the design team staffed one interaction designer on each product, and designers had to proactively work across teams to make sure a user experience across different products was consistent, credible, and pleasant. To make it harder, every engineering team was working with a unique front-end. No styles were shared, no libraries were used to bring UX specs to life. </p>
+<div class="image-medium">
+<img src="assets/img/opattern/diversity.png" alt="Product diversity">
+</div>
+</li>
+<li><p><strong>An aging aesthetic</strong>. Opower launched it’s flagship Home Energy Reports in 2009. For the most part, every new product’s look and feel were anchored to those reports, which had begun to feel dated (to ourselves as designers, as well as to our clients). </p>
+<div class="image-medium">
+<img src="assets/img/opattern/age.png" alt="Product diversity">
+</div>
+</li>
+<li><p><strong>Difficulty with customization</strong>. Our products were designed to be white-labeled, but the original reports only customized a few elements to match our customer’s brand: a logo, a couple colors, and that was about it. Our clients were thirsty for more, and weren’t shy about telling us. </p>
+</li>
+</ol>
+<p>Once we nailed down these pain points we reformatted them into one main goal:</p>
+<blockquote>
+<p>Build and support a modern design system that unites all of Opower’s products.</p>
+</blockquote>
+<p>We would achieve that goal in exactly three steps:</p>
+<p><strong>Step 1</strong>: Create a library of new design patterns. The library would include user interface elements, a typographic system, a color palette, and other components. These patterns would be built in code for engineers to consume, and reproduced as vector art for designers to use.</p>
+<p><strong>Step 2</strong>: Create a living source of documentation, where designers, engineers, and anyone else could thoroughly understand the design rationale, best practices, and implementation details for every design pattern.</p>
+<p><strong>Step 3</strong>: Establish a front-end-as-a-service partnership between our UX and engineering teams, where UX took the lead on applying the new design system to products.</p>
+<h2 id="designing-the-library">Designing the library</h2>
+<p>We treated this like any other design project, and followed a standard UX workflow:</p>
+<blockquote>
+<p>Explore / Test / Iterate</p>
+</blockquote>
+<p>We added one preliminary step to this process: inventory. We printed every screen or module from every product at Opower—including products that we mothballed, like our thermostat app—and tacked them to the wall. </p>
+<p>Being able to see every design pattern at once reiterated our goal and gave us daily motivation to make things better. It also showed us the low hanging fruit: the most commonly-used design elements that we could consolidate, redesign, and build frameworks around. Choosing those patterns to ideate on, our visual designers spent some time sketching and exploring new directions, pulling inspiration from design systems like Google’s <a href="https://www.google.com/design/spec/material-design/introduction.html">Material</a>, the <a href="http://ux.mailchimp.com/patterns">Mailchimp pattern library</a>, and Lonely Planet’s <a href="https://rizzo.lonelyplanet.com/styleguide/design-elements/colours">Rizzo</a>. Our guiding principles for this step were the inversions of the aforementioned pain points: </p>
+<ul>
+<li><strong>Flexibility</strong>. The aesthetic had to adapt to dozens of products across print, email, web, and mobile, and bind them all together.</li>
+<li><strong>Freshness</strong>. A minor update wasn’t going to cut it: we needed a major departure from our existing aesthetic, and it had to look modern.</li>
+<li><strong>Adaptability</strong>. We needed patterns that were foundational, where we could tailor the system to any brand.</li>
+</ul>
+<p>Following an iteration of design exploration, we had group critiques with designers and product managers. From these sessions, we were able to nail down things that were showing promise and figure out which directions weren’t working. We learned a few lessons during these critiques:</p>
+<ul>
+<li>Google has a readily-identifiable design system, and we had to intentionally veer away from it to come up with a unique direction.</li>
+<li>Illustration style can change the credibility of the entire experience. A subtle difference can tip reactions from “this feels friendly and accessible” to “this is too cutesy,” or that the interface didn’t reflect the seriousness of the subject matter. </li>
+<li>Simplicity and whitespace were quick wins. Giving plenty of breathing room to primary elements was more effective in achieving a fresh and modern look than any other approach.</li>
+</ul>
+<p>With some lessons learned and sharpened direction, it was time to test!</p>
+<h4 id="early-opattern-testing">Early Opattern Testing</h4>
+<p>When testing our early vision of Opattern, we started with a couple objectives: to quantifiably verify that the system was meeting our goals, and to generate supporting evidence that Opattern was a worthwhile investment. Opower’s UX research team is one of the best in the biz, so we came up with this testing protocol:</p>
+<div class="flow">
+
+<p>
+<strong>The test sample</strong>:<br>2,500 participants
+<img src="assets/img/opattern/test-participants.png" alt="2,500 participants">
+</p>
+
+<p>
+<strong>The stimuli</strong>:<br>One of two Opower-designed emails. The first (shown to 50% of the sample) was an existing email, and the second (shown to the remaining 50%) was the same email redesigned in the new Opattern design system.
+<img src="assets/img/opattern/test-stimuli.png" alt="Email variants">
+</p>
+
+<p>
+<strong>Heat mapping</strong>:<br>We recording video of participants viewing the email, and created heat maps to make sure they were still focusing on the most important content.
+<img src="assets/img/opattern/test-heatmap.png" alt="Email variants">
+</p>
+
+<p>
+<strong>The survey, part one</strong>:<br>Participants were asked how much they’d like to receive this email. Responses ranged from 0 (not at all) to 10 (very much!).
+<img src="assets/img/opattern/test-survey1.png" alt="0-10 scale">
+</p>
+
+<p>
+<strong>Part two</strong>:<br>Participants used Likert scales to respond to statements like “I understand the information being presented” and “This email looks like it came from a trustworthy source.”
+<img src="assets/img/opattern/test-survey2.png" alt="Likert scale">
+</p>
+
+<p>
+<strong>Part three</strong>:<br>Participants were shown a list of 20 words—some positive, like “modern,” “friendly,” and “attractive,” and others negative, like “dull”—and told to choose five that described the email’s design.
+<img src="assets/img/opattern/test-survey3.png" alt="Word association">
+</p>
+
+</div>
+
+<p>What did we learn? First and foremost, we learned that testing visual design is tough. The two emails were pretty distinct, but the survey results proved that the differences were too subtle to dramatically change people’s reactions. The test did—just barely!—show statistically significant confirmation that Opattern was on the right track: the newer design scored slightly better on all parts of the survey, most notably on word association. The fresh design had a much stronger relationship to descriptors like “friendly” and “clear.” </p>
+<p>The tests validated our approach, so it was time to start building things. Accomplishing our full vision for Opattern would take a year, so the first thing we made was a plan for which products to start redesigning, who to work with, and how to leverage technology.</p>
+<h4 id="first-patterns">First patterns</h4>
+<p>Instead of building this thing all at once—pattern by pattern—we took a product-driven approach. We would only design patterns that we needed for any given product, as we redesigned that product, and we would start with our email campaigns. Why? Engineers were at the same time rebuilding the platform for these emails, so it was a natural opportunity to make decisions about technology with engineering and build Opattern directly into the stack.</p>
+<p>There was another reason for tackling emails first: the patterns we had to design were less interactive and more foundational. In other words, we could postpone thinking about complex UI design and focus on things like typographic hierarchy, color systems, and iconography.</p>
+<h4 id="deciding-on-technology">Deciding on technology</h4>
+<p>It was pretty clear we’d need a CSS preprocessor to pull this off, especially if we wanted to accomplish our goal of making Opattern easy to customize. We settled on <a href="http://sass-lang.com/">Sass</a>, since the Sass community had built compilers for a variety of environments. It worked well in the Ruby-based email platform, and would also integrate nicely into our Node.js-based web platform. However, Sass was only half of the technology solution, since we wanted to make Opattern useful to both engineers and designers on the UX team. So for every pattern we built in Sass, we rebuilt it in Adobe Illustrator and used <a href="http://www.adobe.com/creativecloud/libraries.html">Creative Cloud Libraries</a> to share them, organize everything, and keep it all synced across the entire team.</p>
+<p>With the right tech selected, we started cranking out email patterns.</p>
+<div class="image-grid opattern" style="padding: 20px 0;">
+    <div class="image-grid-50">
+        <div>
+<img src="assets/img/opattern/eher1.png" alt="Email 1">
+        </div>
+    </div>
+    <div class="image-grid-50">
+        <div>
+<img src="assets/img/opattern/eher2.png" alt="Email 2">
+        </div>
+    </div>
+</div>
+
+<p>After we were satisfied with our design system for emails, we got busy adapting the system to our web platform, which itself was being rebuilt and redesigned at that time. The timing was very intentional, and we worked alongside UX to build new interactive patterns that met our goals of flexibility, freshness, and adaptability. Now we could really dig into the nuance of interaction design patterns and develop a system for animation, spatial metaphors, and application states. </p>
+<div class="image-grid opattern" style="padding: 20px 0;">
+    <div class="image-grid-60">
+        <div style="background-image: url(assets/img/opattern/screenshot1.png); height: 300px;"></div>
+    </div>
+    <div class="image-grid-40">
+        <div style="background-image: url(assets/img/opattern/screenshot1.png); height: 300px;"></div>
+    </div>
+    <div class="image-grid-40">
+        <div style="background-image: url(assets/img/opattern/screenshot1.png); height: 300px;"></div>
+    </div>
+    <div class="image-grid-60">
+        <div style="background-image: url(assets/img/opattern/screenshot1.png); height: 300px;"></div>
+    </div>
+</div>
+
+<p>Luckily, our team had already championed the case for responsive design. With our product and engineering teams fully supportive, we also started building rules for how Opattern would react to different devices and resolutions.</p>
+<div class="image-grid opattern" style="padding: 20px 0;">
+    <div class="image-grid-33">
+        <div style="background-image: url(assets/img/opattern/screenshot1.png); height: 350px;"></div>
+    </div>
+    <div class="image-grid-33">
+        <div style="background-image: url(assets/img/opattern/screenshot1.png); height: 350px;"></div>
+    </div>
+    <div class="image-grid-33">
+        <div style="background-image: url(assets/img/opattern/screenshot1.png); height: 350px;"></div>
+    </div>
+</div>
+
+<h4 id="illustration">Illustration</h4>
+<p>Along with redesigned user interface patterns, my team decided to roll out a new approach to imagery. Up to this point, Opower used stock photography in various ways throughout its products. No longer! Encouraged by the positive reaction that vector art got in our user testing, we started investing in a library of unique illustrations. Once our visual designers established an art direction, I worked with talented illustrators like <a href="http://arthurmount.com/">Arthur Mount</a>, <a href="http://www.dowddesign.com/">Amanda Dowd</a>, <a href="http://www.ryanhansz.com/">Ryan Hansz</a>, and others to knock out hundreds of illustrated elements.</p>
+<p>Read more about our illustration library project <a href="/#/illustration">here</a>.</p>
+<h4 id="patterns-for-print">Patterns for print</h4>
+<p>One of our biggest challenges came with adapting Opattern for printed products. Opower’s Home Energy Report—the product we built our business on—is responsible for saving more energy than the entire solar industry produces. It’s a paper report, mailed to customer’s homes, but we build the reports dynamically with HTML and CSS, then render them as PDFs. </p>
+<p>When it came time to build the Home Energy Report v2, my team stepped up to integrate Opattern into the new app. We adapted our typographic scale, color system, and iconography for the printed page, and built conditions into the Sass patterns to optimize for print. </p>
+<div class="image-grid opattern" style="padding: 20px 0;">
+    <div class="image-grid-50">
+        <div>
+<img src="assets/img/opattern/her1.png" alt="Home Energy Report v2: front side">
+        </div>
+    </div>
+    <div class="image-grid-50">
+        <div>
+<img src="assets/img/opattern/her2.png" alt="Home Energy Report v2: back side">
+        </div>
+    </div>
+</div>
+
+<p>Today, our clients can define just a few Sass variables and see the changes across the entire print and digital user experience. As far as I know, Opattern is the only design system in the world that supplies the styling for web, mobile, email, and print products. My team is justly proud of this.</p>
+<h2 id="designing-the-documentation">Designing the documentation</h2>
+<p>A design system is nothing without a style guide, which is why documentation was a big part of our plan. We segmented the style guide’s users into four different audiences:</p>
+<p>Firstly, <strong>designers</strong> needed high-level and specific guidance on all our design patterns, how they fit together, and examples for best practice. We experimented with a few different formats for this, and tested them with surveys and interviews with our designer peers.</p>
+<p>Our second audience—Opower <strong>engineers</strong>—needed code snippets, instructions for implementation, and quick reference for Sass variables. Luckily, pattern libraries like Bootstrap and Foundation established a standard format for this type of documentation which we were able to adapt.</p>
+<p>We also wrote the Opattern style guide with <strong>writers</strong> in mind. Because the process of translation and localization was distributed across the company, we had to document our content system so that anyone could write with the Opattern voice and tone. Approximately one-third of our final style guide is about writing style, punctuation, capitalization, and how to write commonly-used phrases.</p>
+<p>The final audience we considered was our <strong>customers</strong>. We needed a style guide that was a testament to our investment in design and projected our UX team’s expertise, especially since our designers rarely have facetime with the people buying Opower’s products. Thus, the Opattern style guide had to include design rationale, behavior science, and our design principles.</p>
+<blockquote>
+<p><a href="https://ux.opower.com/opattern">ux.opower.com/opattern</a></p>
+</blockquote>
+<div class="image-grid opattern flow">
+    <div class="image-grid-70">
+        <div style="background-image: url(assets/img/opattern/screenshot1.png); height: 230px;"></div>
+    </div>
+    <div class="image-grid-30">
+        <div style="background-image: url(assets/img/opattern/screenshot2.png); height: 230px;"></div>
+    </div>
+    <div class="image-grid-50">
+        <div style="background-image: url(assets/img/opattern/screenshot3.png); height: 170px;"></div>
+    </div>
+    <div class="image-grid-50">
+        <div style="background-image: url(assets/img/opattern/screenshot4.png); height: 170px;"></div>
+    </div>
+</div>
+
+<p>We built the style guide site with <a href="https://angularjs.org/">AngularJS</a>, <a href="http://gruntjs.com/">Grunt</a>, <a href="http://assemble.io/">Assemble</a>, and with Opattern itself as the front-end framework (I liked working with these tools so much, I built this portfolio site with the same tech stack). Assemble was especially perfect for our purposes for two reasons:</p>
+<ol>
+<li>Assemble is a static site generator, which is great for building sites that don’t need the full power of a content management system. We render the site only once every time we make an update, which means the experience is lightning fast for users.</li>
+<li>Assemble let’s you write in <a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a>, which it parses and renders as HTML. This meant we could invite our content strategists and copy writers contribute directly to the site, without any technical knowledge. We even extended Markdown with a few hacks so we could make grids, expandable code blocks, and other unique elements with just a few special characters.</li>
+</ol>
+<h2 id="front-end-as-a-service">Front-end as a service</h2>
+<p>I’m a big advocate for operating front-end engineering from within a UX team. The benefits are obvious to me: firstly, you can recruit stronger front-end developers by offering them a role surrounded by designers. Secondly, if you care about the nuance of front-end engineering, you’re already a designer. Building a great user interface is more than interpreting UX specs, because specs can never cover every microinteraction, every nuance, or every edge case of a complex interface. You need developers who are passionate about pixels and have the design vocabulary to translate the essence of a design into code, and you absolutely need your designers and engineers talking, working together, and having constructive disagreements. </p>
+<p>We used the rollout of Opattern at Opower to pursue exactly this. We created roles on the UX team for designer/developers that could speak in both languages, and filled those roles with some of the <a href="http://benchao.me/">most</a> <a href="http://lesliez.com/">talented</a> people in the industry.</p>
+<p>Staffing the design team with these <em>“Desdevs”</em> meant that engineering teams didn’t need full-time front-end developers, but could instead bring one of us into the mix for an iteration or two at a time when they needed to focus on building out a UI or to apply the Opattern update to their products. When my team wasn’t embedded on a scrum team, we could continue extending the Opattern library with new patterns, AngularJS directives, or prototyping nascent designs with their peers on the design team.</p>
+<h2 id="final-thoughts">Final thoughts</h2>
+<p>Believe it or not, this article could have been much longer: there’s a lot more I could say about this process, what we learned, and how Opattern came together through the diligent work of many people. </p>
+<p>Now that Opattern has been part of Opower’s technology stack for more than a year, I can say that we definitely accomplished our goal of uniting Opower’s products with a design system. Today, every one of our product platforms is running the latest version of Opattern, and it’s great to be able walk through the office, see my team’s work tacked up on the walls, and sense that every experience shows threads of a common visual language. <em>And that’s a good feeling</em>.</p>
+
+
+    </div>
+</article>

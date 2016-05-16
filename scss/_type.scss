@@ -32,17 +32,34 @@ a {
 }
 
 blockquote {
-    border-left: 2px solid $light-gray;
     display: block;
-    margin: $spacing*3 0;
+    margin: $spacing*5 0;
     padding: 0 $spacing*2;
+    position: relative;
     text-align: center;
+    &:before, &:after {
+        @include position(absolute, $spacing*-1 null null 50%);
+        border-top: 1px solid $lighter-gray;
+        content: "";
+        margin-left: -100px;
+        width: 200px;
+    }
+    &:after {
+        top: auto;
+        bottom: $spacing*-1;
+    }
     p {
         color: $light-gray;
         max-width: 500px;
         margin: 0 auto;
         font-style: italic;
-        font-size: $font-size-big;       
+        font-size: $font-size-big;   
+        @media #{$breakpoint-medium} {
+            font-size: $font-size-bigger;
+        }    
+    }
+    a:link {
+        border-bottom: none;
     }
     .cite {
         display: block;

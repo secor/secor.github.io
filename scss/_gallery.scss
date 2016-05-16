@@ -4,6 +4,13 @@ $gallery-image-width: $gallery-piece-width;
 $gallery-item-length: 7;
 $shift: 40px;
 
+.suppress-animation {
+    .gallery-wrap,
+    .gallery-piece {
+        @include transition-duration(0s !important);
+    }
+}
+
 .gallery {
     @include position(absolute, $header-height 0px $footer-height 0px);
     overflow-x: scroll;

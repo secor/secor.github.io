@@ -11,27 +11,37 @@ pieces:
     category: "article"
     slug: "the-web-is-inefficient"
 
--   title: "Illustrating Opower"
-    background: "illustrating-opower.jpg"
-    category: "art"
-    slug: "illustrating-opower"
+-   title: "Building the Opattern Design System"
+    background: "opattern.jpg"
+    category: "design"
+    slug: "opattern"
+
+-   title: "The Enterpise Web"
+    background: "enterprise-web.jpg"
+    category: "design"
+    slug: "enterprise-web"
 
 -   title: "How to Solve Problems in your Sleep (Literally)"
     background: "galaxy.jpg"
     category: "article"
     slug: "solve-problems-in-your-sleep"
 
+-   title: "Picturing Energy Efficiency"
+    background: "opattern-illustrations.jpg"
+    category: "design"
+    slug: "illustration"
+
 -   title: "Figure Drawing"
     background: "drawing.jpg"
     category: "art"
     slug: "figure-drawing"
 
+-   title: "Illustrating Opower"
+    background: "illustrating-opower.jpg"
+    category: "art"
+    slug: "illustrating-opower"
+
 -   title: "The Social Responsibilities of Interaction Designers"
     background: "maze.jpg"
     category: "article"
     slug: "social-responsibilities-of-interaction-designers"
-
--   title: "The Opower UX Team Site"
-    background: "team-site.jpg"
-    category: "design"
-    slug: "opower-ux-team-site"

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="public//css/app.css" />
         <script src="public//app/app.js"></script>
     </head>
-    <body ng-class="{'article-page' : $state.current.name !== 'gallery'}" resize>
+    <body ng-class="{'article-page' : $state.current.name !== 'gallery', 'suppress-animation': isAnimationSuppressed()}" resize>
         
         <svg 
     version="1.1" 
@@ -92,13 +92,6 @@
                 </a>
             </h1>
             <div class="social-links">
-                <!--
-                <a href="#">
-                    <svg viewBox="0 0 80 80">
-                        <use xlink:href="#mail"></use>
-                    </svg>
-                </a>
-                -->
                 <a href="https://github.com/secor">
                     <svg viewBox="0 0 80 80">
                         <use xlink:href="#github"></use>
@@ -109,57 +102,64 @@
                         <use xlink:href="#twitter"></use>
                     </svg>
                 </a>
-                <a href="http://instagram.com/justinsecor">
-                    <svg viewBox="0 0 80 80">
-                        <use xlink:href="#instagram"></use>
-                    </svg>
-                </a>
             </div>
         </header>
 
         <div class="gallery" id="gallery" ng-controller="galleryController" js-gallery>
             <div class="gallery-wrap" id="gallery-wrap">
-                <a href="/#about-me" class="gallery-piece" id="about-me" ng-class="{'active': 'about-me' == $state.current.name}" js-launch>
+                <a ng-href="/#about-me" class="gallery-piece" id="about-me" ng-class="{'active': 'about-me' == $state.current.name}" js-launch>
                         <div class="piece-image" style="background-image: url(/assets/img/justin.jpg)"></div>
                         <div class="piece-title">
                             <div class="piece-category">about</div>
                             <h2>Designer, developer, and a third thing</h2>
                         </div>  
-                    </a><a href="/#the-web-is-inefficient" class="gallery-piece" id="the-web-is-inefficient" ng-class="{'active': 'the-web-is-inefficient' == $state.current.name}" js-launch>
+                    </a><a ng-href="/#the-web-is-inefficient" class="gallery-piece" id="the-web-is-inefficient" ng-class="{'active': 'the-web-is-inefficient' == $state.current.name}" js-launch>
                         <div class="piece-image" style="background-image: url(/assets/img/electro-fist.jpg)"></div>
                         <div class="piece-title">
                             <div class="piece-category">article</div>
                             <h2>The Web is Inefficient, but We Can Fix It</h2>
                         </div>  
-                    </a><a href="/#illustrating-opower" class="gallery-piece" id="illustrating-opower" ng-class="{'active': 'illustrating-opower' == $state.current.name}" js-launch>
-                        <div class="piece-image" style="background-image: url(/assets/img/illustrating-opower.jpg)"></div>
+                    </a><a ng-href="/#opattern" class="gallery-piece" id="opattern" ng-class="{'active': 'opattern' == $state.current.name}" js-launch>
+                        <div class="piece-image" style="background-image: url(/assets/img/opattern.jpg)"></div>
                         <div class="piece-title">
-                            <div class="piece-category">art</div>
-                            <h2>Illustrating Opower</h2>
+                            <div class="piece-category">design</div>
+                            <h2>Building the Opattern Design System</h2>
                         </div>  
-                    </a><a href="/#solve-problems-in-your-sleep" class="gallery-piece" id="solve-problems-in-your-sleep" ng-class="{'active': 'solve-problems-in-your-sleep' == $state.current.name}" js-launch>
+                    </a><a ng-href="/#enterprise-web" class="gallery-piece" id="enterprise-web" ng-class="{'active': 'enterprise-web' == $state.current.name}" js-launch>
+                        <div class="piece-image" style="background-image: url(/assets/img/enterprise-web.jpg)"></div>
+                        <div class="piece-title">
+                            <div class="piece-category">design</div>
+                            <h2>The Enterpise Web</h2>
+                        </div>  
+                    </a><a ng-href="/#solve-problems-in-your-sleep" class="gallery-piece" id="solve-problems-in-your-sleep" ng-class="{'active': 'solve-problems-in-your-sleep' == $state.current.name}" js-launch>
                         <div class="piece-image" style="background-image: url(/assets/img/galaxy.jpg)"></div>
                         <div class="piece-title">
                             <div class="piece-category">article</div>
                             <h2>How to Solve Problems in your Sleep (Literally)</h2>
                         </div>  
-                    </a><a href="/#figure-drawing" class="gallery-piece" id="figure-drawing" ng-class="{'active': 'figure-drawing' == $state.current.name}" js-launch>
+                    </a><a ng-href="/#illustration" class="gallery-piece" id="illustration" ng-class="{'active': 'illustration' == $state.current.name}" js-launch>
+                        <div class="piece-image" style="background-image: url(/assets/img/opattern-illustrations.jpg)"></div>
+                        <div class="piece-title">
+                            <div class="piece-category">design</div>
+                            <h2>Picturing Energy Efficiency</h2>
+                        </div>  
+                    </a><a ng-href="/#figure-drawing" class="gallery-piece" id="figure-drawing" ng-class="{'active': 'figure-drawing' == $state.current.name}" js-launch>
                         <div class="piece-image" style="background-image: url(/assets/img/drawing.jpg)"></div>
                         <div class="piece-title">
                             <div class="piece-category">art</div>
                             <h2>Figure Drawing</h2>
                         </div>  
-                    </a><a href="/#social-responsibilities-of-interaction-designers" class="gallery-piece" id="social-responsibilities-of-interaction-designers" ng-class="{'active': 'social-responsibilities-of-interaction-designers' == $state.current.name}" js-launch>
+                    </a><a ng-href="/#illustrating-opower" class="gallery-piece" id="illustrating-opower" ng-class="{'active': 'illustrating-opower' == $state.current.name}" js-launch>
+                        <div class="piece-image" style="background-image: url(/assets/img/illustrating-opower.jpg)"></div>
+                        <div class="piece-title">
+                            <div class="piece-category">art</div>
+                            <h2>Illustrating Opower</h2>
+                        </div>  
+                    </a><a ng-href="/#social-responsibilities-of-interaction-designers" class="gallery-piece" id="social-responsibilities-of-interaction-designers" ng-class="{'active': 'social-responsibilities-of-interaction-designers' == $state.current.name}" js-launch>
                         <div class="piece-image" style="background-image: url(/assets/img/maze.jpg)"></div>
                         <div class="piece-title">
                             <div class="piece-category">article</div>
                             <h2>The Social Responsibilities of Interaction Designers</h2>
-                        </div>  
-                    </a><a href="/#opower-ux-team-site" class="gallery-piece" id="opower-ux-team-site" ng-class="{'active': 'opower-ux-team-site' == $state.current.name}" js-launch>
-                        <div class="piece-image" style="background-image: url(/assets/img/team-site.jpg)"></div>
-                        <div class="piece-title">
-                            <div class="piece-category">design</div>
-                            <h2>The Opower UX Team Site</h2>
                         </div>  
                     </a>
             </div>

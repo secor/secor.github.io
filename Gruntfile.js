@@ -21,7 +21,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    //outputStyle: 'compressed'
+                    outputStyle: 'compressed'
                 },
                 files: {
                     'public/css/app.css': 'scss/app.scss'
@@ -46,7 +46,6 @@ module.exports = function(grunt) {
                         'node_modules/angular/angular.js',
                         'node_modules/angular-animate/angular-animate.js',
                         'node_modules/angular-ui-router/release/angular-ui-router.js',
-                        //'node_modules/snapsvg/dist/snap.svg-min.js',
                         'node_modules/Swipe/swipe.js',
                         'app/app.js'
                     ]
@@ -57,7 +56,6 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    // hoo boy this is some hacky shit
                     {
                         src: [
                             'node_modules/normalize.css/normalize.css'

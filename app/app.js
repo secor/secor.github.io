@@ -5,7 +5,7 @@ var app = angular.module(
         'ngAnimate'
         ]
     )
-.run(['$rootScope', '$state', '$stateParams',function ($rootScope, $state, $stateParams) {
+.run(['$rootScope', '$state', '$stateParams',function($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
 
@@ -14,14 +14,20 @@ var app = angular.module(
             $rootScope.galleryWrap = document.getElementById('gallery-wrap');
             $rootScope.galleryInterval = 0;
 
-            Math.easeInOutQuad = function (t, b, c, d) {
+            $rootScope.suppressAnimation = true;
+
+            $rootScope.isAnimationSuppressed = function() {
+                return $rootScope.suppressAnimation;
+            };
+
+            Math.easeInOutQuad = function(t, b, c, d) {
                 t /= d/2;
                 if (t < 1) return c/2*t*t + b;
                 t--;
                 return -c/2 * (t*(t-2) - 1) + b;
             };
 
-            $rootScope.prefix = function($e, val) {
+            $rootScope.prefixTransform = function($e, val) {
                 $e.style.webkitTransform = val;
                 $e.style.mozTransform = val;
                 $e.style.msTransform = val;
@@ -64,10 +70,12 @@ var app = angular.module(
         'about-me',
         'the-web-is-inefficient',
         'illustrating-opower',
+        'illustration',
+        'enterprise-web',
         'solve-problems-in-your-sleep',
+        'opattern',
         'figure-drawing',
-        'social-responsibilities-of-interaction-designers',
-        'opower-ux-team-site'
+        'social-responsibilities-of-interaction-designers'
     ];
 
     for (var i = 0; i < detail_states.length; i++) {
@@ -84,90 +92,85 @@ var app = angular.module(
 
 }]);
 
-app.service('sharedVariables', function(){
+app.service('galleryState', function(){
     activeGalleryItem = null;
     launchFromGallery = false;
     windowWidth = 0;
     windowHeight = 0;
     mobile = true;
+
 });
 
-app.controller('galleryController', ['$scope','$window','$state','$timeout','$interval','sharedVariables', function(
-    $scope,
-    $window,
-    $state,
-    $timeout,
-    $interval,
-    sharedVariables
-    ){
+app.controller('galleryController', ['$scope','$window','$state','$timeout','$interval','galleryState',
+    function($scope, $window, $state, $timeout, $interval, galleryState){
 
     $scope.$on('$stateChangeStart', function(event){ 
         $interval.cancel($scope.galleryInterval);
+        // reset things
+        if(galleryState.activeGalleryItem) {
+            $window.scrollTo(0, 0);
+            galleryState.activeGalleryItem.style.width = '';
+        }
     });
 
-    if (sharedVariables.mobile) {
-        $scope.prefix($scope.galleryWrap, 'translate3d(0,0,0)');
-    } else if (sharedVariables.activeGalleryItem && sharedVariables.activeGalleryItem.offsetLeft >= sharedVariables.galleryWidth/3) {
-        $scope.prefix($scope.galleryWrap, 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)');
+    if (galleryState.mobile) {
+        $scope.prefixTransform($scope.galleryWrap, 'translate3d(0,0,0)');
+    } else if (galleryState.activeGalleryItem && galleryState.activeGalleryItem.offsetLeft >= galleryState.galleryWidth/3) {
+        $scope.prefixTransform($scope.galleryWrap, 'translate3d(-'+galleryState.galleryPosition+'px,0,0)');
     }
     // remove the lock so we can scan the gallery
     $timeout(function(){
         $scope.galleryWrap.classList.remove('lock');
     },1000);
-    if (sharedVariables.activeGalleryItem) {
-        sharedVariables.activeGalleryItem.style.width = '';
+    if (galleryState.activeGalleryItem) {
+        galleryState.activeGalleryItem.style.width = '';
     }
 
 }]);
 
 
-app.controller('articleController', ['$scope','$window','$state','$timeout','$interval','sharedVariables', function(
-    $scope,
-    $window,
-    $state,
-    $timeout,
-    $interval,
-    sharedVariables
-    ){
+app.controller('articleController', ['$scope','$window','$state','$timeout','$interval','galleryState', 
+    function($scope, $window, $state, $timeout, $interval, galleryState){
 
     var articleLink = document.getElementById($state.current.label),
         article = document.getElementById('article-'+$state.current.label),
         offset = articleLink.offsetLeft,
-        onTheRight = (offset > sharedVariables.galleryWidth/2) ? true : false,
-        adjOffset = (onTheRight) ? offset-sharedVariables.windowWidth+300 : offset,
-        moveTimeout = (onTheRight) ? 400 : 0,
-        growTimeout = (onTheRight) ? 0 : 400;
+        onTheRight = (offset > galleryState.galleryWidth/2) ? true : false,
+        adjOffset = (onTheRight) ? offset-galleryState.windowWidth+300 : offset,
+        moveTimeout = (onTheRight && !$scope.suppressAnimation ) ? 400 : 0,
+        growTimeout = (onTheRight || $scope.suppressAnimation) ? 0 : 400;
 
-    sharedVariables.activeGalleryItem = articleLink;
+    galleryState.activeGalleryItem = articleLink;
 
     $scope.galleryWrap.classList.add('lock');
     $interval.cancel($scope.galleryInterval);
 
     $timeout(function(){
-        if (!sharedVariables.mobile) {
-            $scope.prefix($scope.galleryWrap, 'translate3d(-'+offset+'px,0,0)');
+        if (!galleryState.mobile) {
+            $scope.prefixTransform($scope.galleryWrap, 'translate3d(-'+offset+'px,0,0)');
         } else {
             $scope.scrollTo($scope.gallery, offset, 200);
         }
     },moveTimeout);
 
     $timeout(function(){
-        articleLink.style.width = sharedVariables.windowWidth+'px';
+        articleLink.style.width = galleryState.windowWidth+'px';
         article.classList.add('active');
     },growTimeout);
 
 }]);
 
 
-app.directive('jsGallery', ['$timeout', '$interval', '$window', 'sharedVariables', function($timeout, $interval, $window, sharedVariables) {
+app.directive('jsGallery', ['$timeout', '$interval', '$window', 'galleryState', 
+    function($timeout, $interval, $window, galleryState) {
     return {
         restrict: 'A',
-        link: function ($scope, element, attrs) {
+        link: function($scope, element, attrs) {
 
             $scope.galleryEvents = function() {
-                if (!sharedVariables.mobile) {
+                if (!galleryState.mobile) {
                     var $gallery        = element[0],
-                        galleryW        = sharedVariables.windowWidth,
+                        galleryW        = galleryState.windowWidth,
                         gallerySW       = $gallery.scrollWidth,
                         wDiff  = (gallerySW/galleryW)-1,  // widths difference ratio
                         mPadd  = 200, // Mousemove Padding
@@ -187,8 +190,8 @@ app.directive('jsGallery', ['$timeout', '$interval', '$window', 'sharedVariables
                         if (!$scope.galleryInterval && !locked) {
                             $scope.galleryInterval = $interval(function(){
                                 posX += (mX2 - posX) / damp; // zeno's paradox equation "catching delay" 
-                                sharedVariables.galleryPosition = posX*wDiff;
-                                $scope.prefix($scope.galleryWrap, 'translate3d(-'+sharedVariables.galleryPosition+'px,0,0)');
+                                galleryState.galleryPosition = posX*wDiff;
+                                $scope.prefixTransform($scope.galleryWrap, 'translate3d(-'+galleryState.galleryPosition+'px,0,0)');
                             },10);
                         }
                     });
@@ -209,36 +212,59 @@ app.directive('jsGallery', ['$timeout', '$interval', '$window', 'sharedVariables
     };
 }]);
 
-app.directive('jsLaunch', ['$timeout', '$interval', 'sharedVariables', function ($timeout, $interval, sharedVariables) {
+app.directive('jsLaunch', ['$rootScope', '$timeout', '$interval', 'galleryState', 
+    function($rootScope, $timeout, $interval, galleryState) {
     return {
         restrict: 'A',
-        link: function ($scope, element, attrs) {
-            element.bind('click', function(event) {
-
-            sharedVariables.launchFromGallery = true;
-                
+        link: function($scope, element, attrs) {
+            element.bind('click', function() {
+                galleryState.launchFromGallery = true;
+                $rootScope.suppressAnimation = false;
+                $timeout(function() {
+                    $rootScope.suppressAnimation = true;
+                }, 1000);
             });
         }
     };
 }]);
 
-app.directive('resize', ['$window', 'sharedVariables', function ($window, sharedVariables) {
-    return function (scope, element, attr) {
+app.directive('backToGallery', ['$rootScope', '$timeout', '$state', 
+    function($rootScope, $timeout, $state) {
+    return {
+        restrict: 'A',
+        link: function($scope, element, attrs) {
+            element.bind('click', function() {
+                $rootScope.suppressAnimation = false;
+                $rootScope.$apply();
+                $timeout(function() {
+                    $state.go('gallery');
+                }, 0);
+                $timeout(function() {
+                    $rootScope.suppressAnimation = true;
+                }, 2000);
+            });
+        }
+    };
+}]);
 
+app.directive('resize', ['$window', 'galleryState', 
+    function($window, galleryState) {
+    return function($scope, element, attr) {
         var w = angular.element($window);
-        scope.$watch(function () {
+
+        $scope.$watch(function() {
             return {
                 'h': w[0].innerHeight, 
                 'w': w[0].innerWidth
             };
-        }, function (newValue) {
-            sharedVariables.windowHeight = newValue.h;
-            sharedVariables.windowWidth = newValue.w;
-            sharedVariables.mobile = (sharedVariables.windowWidth <= 600) ? true : false;
-            sharedVariables.galleryWidth = scope.galleryWrap.clientWidth;
+        }, function(newValue) {
+            galleryState.windowHeight = newValue.h;
+            galleryState.windowWidth = newValue.w;
+            galleryState.mobile = galleryState.windowWidth <= 600;
+            galleryState.galleryWidth = $scope.galleryWrap.clientWidth;
 
-            scope.resizeHeight = function(offsetH) {
-                scope.$eval(attr.notifier);
+            $scope.resizeHeight = function(offsetH) {
+                $scope.$eval(attr.notifier);
                 return { 
                     'height': (newValue.h - offsetH) + 'px'
                 };
@@ -247,7 +273,7 @@ app.directive('resize', ['$window', 'sharedVariables', function ($window, shared
         }, true);
 
         w.bind('resize', function() {
-            scope.$apply();
+            $scope.$apply();
         });
     };
 }]); 

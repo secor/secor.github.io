@@ -23,8 +23,9 @@ $ease: cubic-bezier(.45,.45,0,1);
 
 $font-size-footer: 0.75rem;
 $font-size-tiny: 1rem;
+$font-size-smaller: 1.25rem;
 $font-size-small: 1.5rem;
-$font-size-medium: 2rem;
+$font-size-medium: 2.25rem;
 $font-size-big: 1.75rem;
 $font-size-bigger: 2.25rem;
 $font-size-huge: 4rem;
@@ -36,11 +37,15 @@ $purple: #b0049c;
 $green: #69980f;
 $orange: #f79727;
 $red: #E84F13;
-$gray: #777;
-$dark-gray: #555;
-$light-gray: #ccc;
+$gray: #555;
+$dark-gray: #333;
+$light-gray: #aaa;
+$lighter-gray: #ccc;
+$lightest-gray: #f1f1f1;
 
 $link-color: #517DB6;
 $link-hover-color: #1A7AF7;
+
+$shadow: 0 6px 16px 0 rgba(0,0,0,0.15);
 
 $imgPath: '/assets/img/';
