@@ -90,7 +90,7 @@ $shift: 40px;
         text-align: center;
         width: 100%;
         @media #{$breakpoint-medium} {
-            disply: block;
+            display: block;
         }
         &:after {
             @include position(absolute, $font-size-tiny*3 $spacing*2 auto $spacing*2);
