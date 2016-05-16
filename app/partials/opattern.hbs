@@ -60,7 +60,27 @@ We treated this like any other design project, and followed a standard UX workfl
 
 We added one preliminary step to this process: inventory. We printed every screen or module from every product at Opower—including products that we mothballed, like our thermostat app—and tacked them to the wall. 
 
-Being able to see every design pattern at once reiterated our goal and gave us daily motivation to make things better. It also showed us the low hanging fruit: the most commonly-used design elements that we could consolidate, redesign, and build frameworks around. Choosing those patterns to ideate on, our visual designers spent some time sketching and exploring new directions, pulling inspiration from design systems like Google’s [Material](https://www.google.com/design/spec/material-design/introduction.html), the [Mailchimp pattern library](http://ux.mailchimp.com/patterns), and Lonely Planet’s [Rizzo](https://rizzo.lonelyplanet.com/styleguide/design-elements/colours). Our guiding principles for this step were the inversions of the aforementioned pain points: 
+Being able to see every design pattern at once reiterated our goal and gave us daily motivation to make things better. It also showed us the low hanging fruit: the most commonly-used design elements that we could consolidate, redesign, and build frameworks around. Choosing those patterns to ideate on, our visual designers spent some time sketching and exploring new directions, pulling inspiration from design systems like Google’s [Material](https://www.google.com/design/spec/material-design/introduction.html), the [Mailchimp pattern library](http://ux.mailchimp.com/patterns), and Lonely Planet’s [Rizzo](https://rizzo.lonelyplanet.com/styleguide/design-elements/colours). 
+
+<div class="image-grid opattern">
+    <div class="image-grid-33">
+        <div>
+![Explorations](assets/img/opattern/explore-1.png)
+        </div>
+    </div>
+    <div class="image-grid-33">
+        <div>
+![Explorations](assets/img/opattern/explore-2.png)
+        </div>
+    </div>
+    <div class="image-grid-33">
+        <div>
+![Explorations](assets/img/opattern/explore-3.png)
+        </div>
+    </div>
+</div>
+
+Our guiding principles for this step were the inversions of the aforementioned pain points: 
 
 * **Flexibility**. The aesthetic had to adapt to dozens of products across print, email, web, and mobile, and bind them all together.
 * **Freshness**. A minor update wasn’t going to cut it: we needed a major departure from our existing aesthetic, and it had to look modern.
@@ -196,6 +216,8 @@ Luckily, our team had already championed the case for responsive design. With ou
 
 Along with redesigned user interface patterns, my team decided to roll out a new approach to imagery. Up to this point, Opower used stock photography in various ways throughout its products. No longer! Encouraged by the positive reaction that vector art got in our user testing, we started investing in a library of unique illustrations. Once our visual designers established an art direction, I worked with talented illustrators like [Arthur Mount](http://arthurmount.com/), [Amanda Dowd](http://www.dowddesign.com/), [Ryan Hansz](http://www.ryanhansz.com/), and others to knock out hundreds of illustrated elements.
 
+![Illustration style](assets/img/illustration/Illustration-style.png)
+
 Read more about our illustration library project [here](/#/illustration).
 
 #### Patterns for print
@@ -251,7 +273,7 @@ The final audience we considered was our **customers**. We needed a style guide 
 We built the style guide site with [AngularJS](https://angularjs.org/), [Grunt](http://gruntjs.com/), [Assemble](http://assemble.io/), and with Opattern itself as the front-end framework (I liked working with these tools so much, I built this portfolio site with the same tech stack). Assemble was especially perfect for our purposes for two reasons:
 
 1. Assemble is a static site generator, which is great for building sites that don’t need the full power of a content management system. We render the site only once every time we make an update, which means the experience is lightning fast for users.
-1. Assemble let’s you write in [Markdown](https://daringfireball.net/projects/markdown/syntax), which it parses and renders as HTML. This meant we could invite our content strategists and copy writers contribute directly to the site, without any technical knowledge. We even extended Markdown with a few hacks so we could make grids, expandable code blocks, and other unique elements with just a few special characters.
+1. Assemble let’s you write in [Markdown](https://daringfireball.net/projects/markdown/syntax), which it parses and renders as HTML. This meant we could invite our content strategists and copy writers to contribute directly to the site, without any technical knowledge. We even extended Markdown with a few hacks so we could make grids, expandable code blocks, and other unique elements with just a few special characters.
 
 ## Front-end as a service
 
@@ -259,13 +281,13 @@ I’m a big advocate for operating front-end engineering from within a UX team. 
 
 We used the rollout of Opattern at Opower to pursue exactly this. We created roles on the UX team for designer/developers that could speak in both languages, and filled those roles with some of the [most](http://benchao.me/) [talented](http://lesliez.com/) people in the industry.
 
-Staffing the design team with these _“Desdevs”_ meant that engineering teams didn’t need full-time front-end developers, but could instead bring one of us into the mix for an iteration or two at a time when they needed to focus on building out a UI or to apply the Opattern update to their products. When my team wasn’t embedded on a scrum team, we could continue extending the Opattern library with new patterns, AngularJS directives, or prototyping nascent designs with their peers on the design team.
+Staffing the design team with these _“Desdevs”_ meant that engineering teams didn’t need full-time front-end developers, but could instead bring one of us into the mix for an iteration or two at a time when they needed to focus on building out a UI or applying the Opattern update to their products. When my team wasn’t embedded on a scrum team, we could continue extending the Opattern library with new patterns and AngularJS directives, or prototyping nascent designs with their peers on the design team.
 
 ## Final thoughts
 
 Believe it or not, this article could have been much longer: there’s a lot more I could say about this process, what we learned, and how Opattern came together through the diligent work of many people. 
 
-Now that Opattern has been part of Opower’s technology stack for more than a year, I can say that we definitely accomplished our goal of uniting Opower’s products with a design system. Today, every one of our product platforms is running the latest version of Opattern, and it’s great to be able walk through the office, see my team’s work tacked up on the walls, and sense that every experience shows threads of a common visual language. _And that’s a good feeling_.
+Now that Opattern has been part of Opower’s technology stack for more than a year, I can say that we definitely accomplished our goal of uniting Opower’s products with a design system. Today, every one of our product platforms is running the latest version of Opattern, and it’s great to be able walk through the office, see my team’s work tacked up on the walls, and sense that every experience shows threads of a common visual language. It’s a good feeling.
 
 {{/markdown}}
 
