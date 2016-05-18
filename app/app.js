@@ -263,17 +263,23 @@ app.directive('resize', ['$window', 'galleryState',
                 'w': w[0].innerWidth
             };
         }, function(newValue) {
-            galleryState.windowHeight = newValue.h;
+            var widthChanged = galleryState.windowWidth && newValue.w !== galleryState.windowWidth;
+
+            console.log(galleryState.windowHeight, newValue.h);
+
+            $scope.resizeHeight = function(offsetH) {
+                var newHeight = widthChanged || !galleryState.windowHeight ? newValue.h : galleryState.windowHeight;
+
+                galleryState.windowHeight = newHeight;
+
+                $scope.$eval(attr.notifier);
+                return { 
+                    'height': (newHeight - offsetH) + 'px'
+                };
+            };
             galleryState.windowWidth = newValue.w;
             galleryState.mobile = galleryState.windowWidth <= 600;
             galleryState.galleryWidth = $scope.galleryWrap.clientWidth;
-
-            $scope.resizeHeight = function(offsetH) {
-                $scope.$eval(attr.notifier);
-                return { 
-                    'height': (newValue.h - offsetH) + 'px'
-                };
-            };
 
         }, true);
 
