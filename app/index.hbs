@@ -35,13 +35,22 @@
 
         <div class="gallery" id="gallery" ng-controller="galleryController" js-gallery>
             <div class="gallery-wrap" id="gallery-wrap">
-                {{#each gallery.pieces}}<a ng-href="/#{{this.slug}}" class="gallery-piece" id="{{this.slug}}" ng-class="{'active': '{{this.slug}}' == $state.current.name}" js-launch>
-                        <div class="piece-image" style="background-image: url(/assets/img/{{this.background}}); background-color: #{{this.color}}"></div>
-                        <div class="piece-title">
-                            <div class="piece-category">{{this.category}}</div>
-                            <h2>{{this.title}}</h2>
-                        </div>  
-                    </a>{{/each}}
+                {{#each gallery.pieces}}<a
+                    ng-href="/#{{this.slug}}"
+                    class="gallery-piece"
+                    id="{{this.slug}}"
+                    ng-class="{'active': '{{this.slug}}' == $state.current.name}"
+                    style="background-color: #{{this.color}}"
+                    js-launch>
+                    <div
+                        class="piece-image"
+                        js-load-image load-image-url="'/assets/img/{{this.background}}'">
+                    </div>
+                    <div class="piece-title">
+                        <div class="piece-category">{{this.category}}</div>
+                        <h2>{{this.title}}</h2>
+                    </div>  
+                </a>{{/each}}
             </div>
         </div>
 

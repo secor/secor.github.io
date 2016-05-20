@@ -231,6 +231,46 @@ app.directive('jsLaunch', ['$rootScope', '$timeout', '$interval', 'galleryState'
     };
 }]);
 
+app.directive('jsLoadImage', ['$timeout', '$q',
+    function($timeout, $q) {
+    return {
+        restrict: 'A',
+        scope: {
+            loadImageUrl: '='
+        },
+        link: function($scope, element) {
+
+            function preload(url) {
+                var deffered = $q.defer(),
+                    image = new Image();
+
+                image.src = url;
+
+                if (image.complete) {
+                    deffered.resolve();
+                } else {
+                    image.addEventListener('load', function() {
+                        deffered.resolve();
+                    });
+                    image.addEventListener('error', function() {
+                        deffered.reject();
+                    });
+                }
+                return deffered.promise;
+            }
+        
+            preload($scope.loadImageUrl).then(function(){
+                $timeout(function(){
+                    element.css({
+                        'background-image': 'url(' + $scope.loadImageUrl + ')'
+                    });
+                    element.addClass('loaded');
+                }, 100);
+            });
+        }
+    };
+}]);
+
 app.directive('backToGallery', ['$rootScope', '$timeout', '$state', 'galleryState', 
     function($rootScope, $timeout, $state, galleryState) {
     return {
