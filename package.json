@@ -1,6 +1,6 @@
 {
   "name": "justin-secor-dot-com",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Justin Secor",
   "devDependencies": {
     "angular": "^1.2.19",

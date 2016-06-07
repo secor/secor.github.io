@@ -305,8 +305,6 @@ app.directive('resize', ['$window', 'galleryState',
         }, function(newValue) {
             var widthChanged = galleryState.windowWidth && newValue.w !== galleryState.windowWidth;
 
-            console.log(galleryState.windowHeight, newValue.h);
-
             $scope.resizeHeight = function(offsetH) {
                 var newHeight = widthChanged || !galleryState.windowHeight ? newValue.h : galleryState.windowHeight;
 
