@@ -1,7 +1,7 @@
 pieces:
 
 -   title: "Designer, developer, and a third thing"
-    background: "justin.jpg"
+    background: "snowboarding.jpg"
     category: "about"
     slug: "about-me"
     content: "about-me.md"
